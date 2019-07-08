@@ -647,8 +647,8 @@ int getCost(int cardNumber)
 int cardEffectBaron(int choice1, struct gameState *state, int currentPlayer) {
 	state->numBuys++;//Increase buys by 1!
 	
-	if (choice1 > 0){//Boolean true or going to discard an estate
-		int p = 0;//Iterator for hand!
+	if (choice1 < 0){//Boolean true or going to discard an estate	//intentional bug (changed to < from >)
+		int p = 9;//Iterator for hand!	//intentional bug (changed to 9 from 0)
 		int card_not_discarded = 1;//Flag for discard set!
 		
 		while(card_not_discarded){
@@ -732,7 +732,7 @@ int cardEffectMinion(int choice1, int choice2, struct gameState *state, int hand
 	    {
 	    	if (i != currentPlayer)
 			{
-				if ( state->handCount[i] > 4 )
+				if ( state->handCount[i] > 3 )//intentional bug (changed to 3 from 4)
 		    	{
 		    		//discard hand
 		    		while( state->handCount[i] > 0 )
@@ -741,7 +741,7 @@ int cardEffectMinion(int choice1, int choice2, struct gameState *state, int hand
 		    		}
 					
 					//draw 4
-					for (int j = 0; j < 4; j++)
+					for (i = 0; i < 4; i++)//intentional bug (changed to i from j)
 					{
 						drawCard(i, state);
 					}
@@ -768,7 +768,7 @@ int cardEffectAmbassador(int choice1, int choice2, struct gameState *state, int 
 	
 	for (i = 0; i < state->handCount[currentPlayer]; i++)
 	{
-		if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
+		if (i != handPos && i == state->hand[currentPlayer][choice2] && i != choice2)//intentional bug (changed to choice 2 from choice 1)
 	    {
 	    	j++;
 	    }
@@ -798,7 +798,7 @@ int cardEffectAmbassador(int choice1, int choice2, struct gameState *state, int 
 	discardCard(handPos, currentPlayer, state, 0);
 	
 	//trash copies of cards returned to supply
-	for (j = 0; j < choice2; j++)
+	for (j = 0; j < choice1; j++)// intentional bug (changed to choice1 from choice2)
 	{
 		for (i = 0; i < state->handCount[currentPlayer]; i++)
 	    {
@@ -816,7 +816,7 @@ int cardEffectAmbassador(int choice1, int choice2, struct gameState *state, int 
 int cardEffectTribute(struct gameState *state, int currentPlayer, int nextPlayer) {
 	int tributeRevealedCards[2] = {-1, -1};
 	
-	if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
+	if ((state->discardCount[nextPlayer] - state->deckCount[nextPlayer]) <= 1){//intentional bug (changed from + to -)
 		if (state->deckCount[nextPlayer] > 0){
 			tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
 			state->deckCount[nextPlayer]--;
@@ -843,7 +843,7 @@ int cardEffectTribute(struct gameState *state, int currentPlayer, int nextPlayer
 			shuffle(nextPlayer,state);//Shuffle the deck
 		}
 		
-		tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
+		tributeRevealedCards[9] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];//intentional bug (changed index from 0 to 9)
 		state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
 		state->deckCount[nextPlayer]--;
 		tributeRevealedCards[1] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
@@ -857,7 +857,7 @@ int cardEffectTribute(struct gameState *state, int currentPlayer, int nextPlayer
 		tributeRevealedCards[1] = -1;
 	}
 	
-	for (int i = 0; i <= 2; i ++){
+	for (int i = 0; i >= 2; i ++){//intentional bug (changed "i <= 2" to "i >= 2")
 		if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold){//Treasure cards
 			state->coins += 2;
 		}
@@ -876,9 +876,9 @@ int cardEffectTribute(struct gameState *state, int currentPlayer, int nextPlayer
 int cardEffectMine(int choice1, int choice2, struct gameState *state, int handPos, int currentPlayer) {
 	int j = state->hand[currentPlayer][choice1];  //store card we will trash
 	
-	if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+	if (state->hand[currentPlayer][choice1] > copper || state->hand[currentPlayer][choice1] > gold)// intentional bug (changed "< copper" to "> copper")
 	{
-		return -1;
+		return 1;// intentional bug (changed value from -1)
 	}
 	
 	if (choice2 > treasure_map || choice2 < curse)
