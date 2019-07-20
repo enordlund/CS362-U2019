@@ -119,32 +119,6 @@ void testCardEffectBaron() {
             }
         }
     }
-    
-    // testing choice1 == 0, when the player doesn't have an estate card
-    // // results in discarding an estate
-    
-    test1.choice1 = 1;
-    
-    test1.state->numPlayers = 2; //number of players
-    test1.state->supplyCount[treasure_map+1];  //this is the amount of a specific type of card given a specific number.
-    test1.state->embargoTokens[treasure_map+1];
-    test1.state->outpostPlayed;
-    test1.state->outpostTurn;
-    test1.state->whoseTurn;
-    test1.state->phase;
-    test1.state->numActions = 1; /* Starts at 1 each turn */
-    test1.state->coins; /* Use as you see fit! */
-    test1.state->numBuys = 1; /* Starts at 1 each turn */
-    test1.state->hand[MAX_PLAYERS][MAX_HAND];
-    test1.state->handCount[MAX_PLAYERS];
-    test1.state->deck[MAX_PLAYERS][MAX_DECK];
-    test1.state->deckCount[MAX_PLAYERS];
-    test1.state->discard[MAX_PLAYERS][MAX_DECK];
-    test1.state->discardCount[MAX_PLAYERS];
-    test1.state->playedCards[MAX_DECK];
-    test1.state->playedCardCount = 0;
-    
-    
 }
 
 int main() {
