@@ -6,7 +6,7 @@
 #include "dominion_helpers.h"
 
 
-void testInitializeGame() {
+void testShuffle() {
      for (int numPlayers = 2; numPlayers <= MAX_PLAYERS; ++numPlayers) {
           // testing for all possible numbers of players
           struct gameState *state;
@@ -39,6 +39,6 @@ void testInitializeGame() {
 }
 
 int main() {
-    testInitializeGame();
+    testShuffle();
     return 0;
 }
