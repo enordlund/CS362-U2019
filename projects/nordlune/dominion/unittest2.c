@@ -58,7 +58,7 @@ void testCardEffectMinion() {
                         int initialHandCount[numPlayers];
                         memcpy(initialHandCount, state->handCount, sizeof(state->handCount));
                         
-                        cardEffectMinion(choice1, choice2, &state, 0, currentPlayer)
+                        cardEffectMinion(choice1, choice2, &state, 0, currentPlayer);
                         
                         
                         

@@ -48,7 +48,7 @@ void testCardEffectAmbassador() {
                         int initialHandCount[numPlayers];
                         memcpy(initialHandCount, state->handCount, sizeof(state->handCount));
                         
-                        cardEffectAmbassador(choice1, choice2, &state, 0, currentPlayer)
+                        cardEffectAmbassador(choice1, choice2, &state, 0, currentPlayer);
                         
                         // hand count of currentPlayer should be 0-2 cards less than the initial count
                         int expectedMaxHandCount = initialHandCount[currentPlayer];
