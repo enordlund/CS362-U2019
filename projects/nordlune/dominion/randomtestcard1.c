@@ -57,6 +57,13 @@ int main() {
         
         
         // check if successful
+        int newEstateCount = 0;
+        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+            if (hand[currentPlayer][card] == estate) {
+                newEstateCount++;
+            }
+        }
+        
         int newEstateSupplyCount = state->supplyCount[estate];
         
         if (choice == 0) {
