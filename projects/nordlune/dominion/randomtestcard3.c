@@ -26,11 +26,14 @@ int main() {
         int seed = time(NULL);
         
         srand(seed);//passing seed to rand() for future values
+        
+        
         // generate random set of parameters for game, within defined bounds
         int numPlayers = (rand() % (MAX_PLAYERS - 1)) + 2;//random value from min (2) to max (MAX_PLAYERS)
         
         int choice = (rand() % 1) + 1; // random value, 0 or 1;
         int currentPlayer = (rand() % numPlayers); // random player
+        
         
         // initialize game
         memset(&state, 23, sizeof(struct gameState));   // clear the game state
@@ -39,7 +42,6 @@ int main() {
         
         
         // save original state variables
-        
         int initialHandCount[numPlayers];
         memcpy(initialHandCount, state->handCount, sizeof(state->handCount));
        
@@ -63,7 +65,6 @@ int main() {
         
         
         // call cardEffectTribute with random parameters
-        
         int cardEffect = cardEffectTribute(&state, 0, currentPlayer, nextPlayer);
         
         
@@ -86,7 +87,6 @@ int main() {
         }
         
         assert(expectedTreasuresMax >= currentTreasures);
-        
         
         int expectedHandCountMax = initialHandCount[currentPlayer] + 2;
         

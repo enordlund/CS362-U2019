@@ -26,11 +26,14 @@ int main() {
         int seed = time(NULL);
         
         srand(seed);//passing seed to rand() for future values
+        
+        
         // generate random set of parameters for game, within defined bounds
         int numPlayers = (rand() % (MAX_PLAYERS - 1)) + 2;//random value from min (2) to max (MAX_PLAYERS)
         
         int choice = (rand() % 1) + 1; // random value, 0 or 1;
         int currentPlayer = (rand() % numPlayers); // random player
+        
         
         // initialize game
         memset(&state, 23, sizeof(struct gameState));   // clear the game state
@@ -39,7 +42,6 @@ int main() {
         
         
         // save original state variables
-        
         int initialEstateCount = 0;
         for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
             if (hand[currentPlayer][card] == estate) {
@@ -53,7 +55,6 @@ int main() {
         
         
         // call cardEffectBaron with random parameters
-        
         int cardEffect = cardEffectBaron(choice, &state, currentPlayer);
         
         
