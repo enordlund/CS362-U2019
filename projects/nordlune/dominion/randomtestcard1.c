@@ -108,7 +108,7 @@ int main() {
                 assert(lastDiscard == expectedDiscard);
                 
             }
-        
+        }
         
     }
     return 0;
