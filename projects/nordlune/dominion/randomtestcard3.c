@@ -10,10 +10,7 @@
 
 
 int main() {
-    // generate random seed
-    int seed = time(NULL);
     
-    srand(seed);//passing seed to rand() for future values
     
     
     // define game state
@@ -25,6 +22,10 @@ int main() {
     // loop to generate random test cases
     bool successful = true;
     while (successful) {
+        // generate random seed
+        int seed = time(NULL);
+        
+        srand(seed);//passing seed to rand() for future values
         // generate random set of parameters for game, within defined bounds
         int numPlayers = (rand() % (MAX_PLAYERS - 1)) + 2;//random value from min (2) to max (MAX_PLAYERS)
         
