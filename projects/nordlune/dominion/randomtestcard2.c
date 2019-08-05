@@ -52,11 +52,11 @@ int main() {
         // save original state variables
         int initialTreasures = 0;
         for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-            if (hand[currentPlayer][card] == copper) {
+            if (state->hand[currentPlayer][card] == copper) {
                 initialTreasures++;
-            } else if (hand[currentPlayer][card] == silver) {
+            } else if (state->hand[currentPlayer][card] == silver) {
                 initialTreasures++;
-            } else if (hand[currentPlayer][card] == gold) {
+            } else if (state->hand[currentPlayer][card] == gold) {
                 initialTreasures++;
             }
         }
@@ -78,11 +78,11 @@ int main() {
             
             int newTreasureCount = 0;
             for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-                if (hand[currentPlayer][card] == copper) {
+                if (state->hand[currentPlayer][card] == copper) {
                     newTreasureCount++;
-                } else if (hand[currentPlayer][card] == silver) {
+                } else if (state->hand[currentPlayer][card] == silver) {
                     newTreasureCount++;
-                } else if (hand[currentPlayer][card] == gold) {
+                } else if (state->hand[currentPlayer][card] == gold) {
                     newTreasureCount++;
                 }
             }

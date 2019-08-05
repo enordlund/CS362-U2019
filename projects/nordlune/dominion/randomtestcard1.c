@@ -44,7 +44,7 @@ int main() {
         // save original state variables
         int initialEstateCount = 0;
         for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-            if (hand[currentPlayer][card] == estate) {
+            if (state->hand[currentPlayer][card] == estate) {
                 initialEstateCount++;
             }
         }
@@ -61,7 +61,7 @@ int main() {
         // check if successful
         int newEstateCount = 0;
         for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-            if (hand[currentPlayer][card] == estate) {
+            if (state->hand[currentPlayer][card] == estate) {
                 newEstateCount++;
             }
         }
