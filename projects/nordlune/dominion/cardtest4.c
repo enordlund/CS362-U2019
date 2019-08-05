@@ -26,7 +26,7 @@ void testGetWinners() {
           
           int initialTurn = state.whoseTurn;
           
-          int winners = getWinners(players[MAX_PLAYERS], &state);
+          int winners = getWinners(state.players, &state);
           
           
           assert(winners < numPlayers);
