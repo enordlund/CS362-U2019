@@ -38,7 +38,6 @@ unitTests: unittest1.c unittest2.c unittest3.c unittest4.c unittest5.c dominion.
 
 cardTests: cardtest1.c cardtest2.c cardtest3.c cardtest4.c cardtest5.c dominion.o rngs.o
 	gcc -o cardTest1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)
-	gcc -o cardTest2 -g cardtest2.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardTest3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardTest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardTest5 -g cardtest5.c dominion.o rngs.o $(CFLAGS)
