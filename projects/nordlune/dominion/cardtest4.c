@@ -10,6 +10,10 @@
 
 
 void testGetWinners() {
+     // generate random seed
+     int seed = time(NULL);
+     
+     srand(seed);//passing seed to rand() for future values
      for (int numPlayers = 2; numPlayers <= MAX_PLAYERS; ++numPlayers) {
           // testing for all possible numbers of players
           struct gameState state;
