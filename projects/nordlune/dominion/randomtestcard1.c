@@ -43,15 +43,15 @@ int main() {
         
         // save original state variables
         int initialEstateCount = 0;
-        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-            if (state->hand[currentPlayer][card] == estate) {
+        for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
+            if (state.hand[currentPlayer][card] == estate) {
                 initialEstateCount++;
             }
         }
         
-        int initialEstateSupplyCount = state->supplyCount[estate];
+        int initialEstateSupplyCount = state.supplyCount[estate];
         
-        int initialDiscardCount = state->discardCount[currentPlayer];
+        int initialDiscardCount = state.discardCount[currentPlayer];
         
         
         // call cardEffectBaron with random parameters
@@ -60,13 +60,13 @@ int main() {
         
         // check if successful
         int newEstateCount = 0;
-        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-            if (state->hand[currentPlayer][card] == estate) {
+        for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
+            if (state.hand[currentPlayer][card] == estate) {
                 newEstateCount++;
             }
         }
         
-        int newEstateSupplyCount = state->supplyCount[estate];
+        int newEstateSupplyCount = state.supplyCount[estate];
         
         if (choice == 0) {
             // testing for the case of gaining an estate
@@ -101,8 +101,8 @@ int main() {
                 // estate is 1 in the CARD enum
                 int expectedDiscard = 1;
                 
-                int lastDiscardIndex = state->discardCount[currentPlayer] - 1;
-                int lastDiscard = state->discard[currentPlayer][lastDiscardIndex];
+                int lastDiscardIndex = state.discardCount[currentPlayer] - 1;
+                int lastDiscard = state.discard[currentPlayer][lastDiscardIndex];
                 
                 assert(newEstateCount == expectedEstateCount);
                 assert(newEstateSupplyCount == initialEstateSupplyCount);

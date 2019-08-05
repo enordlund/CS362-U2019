@@ -43,22 +43,22 @@ int main() {
         
         // save original state variables
         int initialHandCount[numPlayers];
-        memcpy(initialHandCount, state->handCount, sizeof(state->handCount));
+        memcpy(initialHandCount, state.handCount, sizeof(state.handCount));
        
         int nextPlayer = 0;
         if (currentPlayer != (numPlayers - 1)) {
           nextPlayer = currentPlayer + 1;
         }
 
-        int initialActions = state->numActions;
+        int initialActions = state.numActions;
         
         int initialTreasures = 0;
-        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-            if (state->hand[currentPlayer][card] == copper) {
+        for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
+            if (state.hand[currentPlayer][card] == copper) {
               initialTreasures++;
-            } else if (state->hand[currentPlayer][card] == silver) {
+            } else if (state.hand[currentPlayer][card] == silver) {
               initialTreasures++;
-            } else if (state->hand[currentPlayer][card] == gold) {
+            } else if (state.hand[currentPlayer][card] == gold) {
               initialTreasures++;
             }
         }
@@ -71,17 +71,17 @@ int main() {
         // check if successful
         int expectedActionsMax = initialActions + 2;
                
-        assert(expectedActionsMax >= state->numActions);
+        assert(expectedActionsMax >= state.numActions);
         
         int expectedTreasuresMax = initialTreasures + 2;
         
         int currentTreasures = 0;
-        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-            if (state->hand[currentPlayer][card] == copper) {
+        for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
+            if (state.hand[currentPlayer][card] == copper) {
                 currentTreasures++;
-            } else if (state->hand[currentPlayer][card] == silver) {
+            } else if (state.hand[currentPlayer][card] == silver) {
                 currentTreasures++;
-            } else if (state->hand[currentPlayer][card] == gold) {
+            } else if (state.hand[currentPlayer][card] == gold) {
                 currentTreasures++;
             }
         }
@@ -90,7 +90,7 @@ int main() {
         
         int expectedHandCountMax = initialHandCount[currentPlayer] + 2;
         
-        assert(expectedHandCountMax >= state->handCount[currentPlayer]);
+        assert(expectedHandCountMax >= state.handCount[currentPlayer]);
         
         
     }

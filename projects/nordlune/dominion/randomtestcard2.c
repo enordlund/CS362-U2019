@@ -51,18 +51,18 @@ int main() {
         
         // save original state variables
         int initialTreasures = 0;
-        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-            if (state->hand[currentPlayer][card] == copper) {
+        for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
+            if (state.hand[currentPlayer][card] == copper) {
                 initialTreasures++;
-            } else if (state->hand[currentPlayer][card] == silver) {
+            } else if (state.hand[currentPlayer][card] == silver) {
                 initialTreasures++;
-            } else if (state->hand[currentPlayer][card] == gold) {
+            } else if (state.hand[currentPlayer][card] == gold) {
                 initialTreasures++;
             }
         }
         
         int initialHandCount[numPlayers];
-        memcpy(initialHandCount, state->handCount, sizeof(state->handCount));
+        memcpy(initialHandCount, state.handCount, sizeof(state.handCount));
         
         
         // call cardEffectMinion with random parameters
@@ -77,12 +77,12 @@ int main() {
             int expectedTreasureCount = initialTreasures + 2;
             
             int newTreasureCount = 0;
-            for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
-                if (state->hand[currentPlayer][card] == copper) {
+            for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
+                if (state.hand[currentPlayer][card] == copper) {
                     newTreasureCount++;
-                } else if (state->hand[currentPlayer][card] == silver) {
+                } else if (state.hand[currentPlayer][card] == silver) {
                     newTreasureCount++;
-                } else if (state->hand[currentPlayer][card] == gold) {
+                } else if (state.hand[currentPlayer][card] == gold) {
                     newTreasureCount++;
                 }
             }
@@ -97,12 +97,12 @@ int main() {
             
             for (int player = 0; player < numPlayers; ++player) {
                 if (player == currentPlayer) {
-                    assert(state->handCount[player] == 4);
+                    assert(state.handCount[player] == 4);
                 } else {
                     if (initialHandCount[player] > 4) {
-                        assert(state->handCount[player] == 4);
+                        assert(state.handCount[player] == 4);
                     } else {
-                        assert(state->handCount[player] == initialHandCount[player]);
+                        assert(state.handCount[player] == initialHandCount[player]);
                     }
                 }
             }
