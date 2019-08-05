@@ -30,7 +30,6 @@ void testShuffle() {
                int deckCount = state.deckCount[player];
                
                
-               
                int initialDeck[deckCount];
                memcopy(initialDeck, state.deck[player], sizeof(state.deck[player]));
                shuffle(player, &state);
