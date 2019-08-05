@@ -105,7 +105,7 @@ int main() {
                 int lastDiscard = state->discard[currentPlayer][lastDiscardIndex];
                 
                 assert(newEstateCount == expectedEstateCount);
-                assert(newEstateSupplyCount == expectedEstateSupplyCount);
+                assert(newEstateSupplyCount == initialEstateSupplyCount);
                 assert(lastDiscard == expectedDiscard);
                 
             }
