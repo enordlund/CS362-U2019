@@ -9,7 +9,7 @@
 void testDrawCard() {
      for (int numPlayers = 2; numPlayers <= MAX_PLAYERS; ++numPlayers) {
           // testing for all possible numbers of players
-          struct gameState *state;
+          struct gameState state;
 
           int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 
@@ -19,12 +19,12 @@ void testDrawCard() {
           
           
           for (int player = 0; player < numPlayers; ++player) {
-               int initialHandCount = state->handCount[player];
+               int initialHandCount = state.handCount[player];
                drawCard(player, &state);
                
                int expectedHandCount = initialHandCount + 1;
                
-               assert(state->handCount[player] == expectedHandCount);
+               assert(state.handCount[player] == expectedHandCount);
           }
           
      }

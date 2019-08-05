@@ -9,7 +9,7 @@
 void testInitializeGame() {
      for (int numPlayers = 2; numPlayers <= MAX_PLAYERS; ++numPlayers) {
           // testing for all possible numbers of players
-          struct gameState *state;
+          struct gameState state;
 
           int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 
@@ -18,14 +18,14 @@ void testInitializeGame() {
           int game = initializeGame(numPlayers, k, seed, &state); // initialize a new game
           
           // now that the game is initialized, check state
-          assert(state->numPlayers == numPlayers);
+          assert(state.numPlayers == numPlayers);
           
-          assert(state->numActions == 1);
+          assert(state.numActions == 1);
           
-          assert(state->numBuys == 1);
+          assert(state.numBuys == 1);
           
           for (int player = 0; player < numPlayers; ++player) {
-               assert(state->handCount[player] == 5);
+               assert(state.handCount[player] == 5);
           }
      }
 }

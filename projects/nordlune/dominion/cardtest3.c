@@ -9,7 +9,7 @@
 void testEndTurn() {
      for (int numPlayers = 2; numPlayers <= MAX_PLAYERS; ++numPlayers) {
           // testing for all possible numbers of players
-          struct gameState *state;
+          struct gameState state;
 
           int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 
@@ -17,7 +17,7 @@ void testEndTurn() {
 
           int game = initializeGame(numPlayers, k, seed, &state); // initialize a new game
           
-          int initialTurn = state->whoseTurn;
+          int initialTurn = state.whoseTurn;
           
           int ended = endTurn(&state);
           
@@ -26,7 +26,7 @@ void testEndTurn() {
                expectedTurn = initialTurn + 1;
           }
           
-          assert(state->whoseTurn == expectedTurn);
+          assert(state.whoseTurn == expectedTurn);
      }
 }
 
