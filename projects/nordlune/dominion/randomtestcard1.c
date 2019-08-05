@@ -98,10 +98,11 @@ int main() {
                 
                 int expectedEstateCount = initialEstateCount - 1;
                 int expectedDiscardCount = initialDiscardCount + 1;
-                CARD expectedDiscard = estate;
+                // estate is 1 in the CARD enum
+                int expectedDiscard = 1;
                 
                 int lastDiscardIndex = state->discardCount[currentPlayer] - 1;
-                CARD lastDiscard = state->discard[currentPlayer][lastDiscardIndex];
+                int lastDiscard = state->discard[currentPlayer][lastDiscardIndex];
                 
                 assert(newEstateCount == expectedEstateCount);
                 assert(newEstateSupplyCount == expectedEstateSupplyCount);
