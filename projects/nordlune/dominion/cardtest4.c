@@ -26,10 +26,18 @@ void testGetWinners() {
           
           int initialTurn = state.whoseTurn;
           
-          int winners = getWinners(state.players, &state);
+          int players[MAX_PLAYERS];
           
+          int winners = getWinners(players, &state);
           
-          assert(winners < numPlayers);
+          int winnerCount = 0;
+          for (int i = 0; i < MAX_PLAYERS; ++i) {
+               if (players[i] == 1) {
+                    winnerCount++;
+               }
+          }
+          
+          assert(winnerCount < numPlayers);
      }
 }
 
