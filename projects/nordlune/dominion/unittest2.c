@@ -8,14 +8,6 @@
 #include <assert.h>
 #include <stdbool.h>
 
-struct testStruct {
-    int choice1;
-    int choice2;
-    struct gameState *state;
-    int handPos;
-    int currentPlayer;
-}
-
 void testCardEffectMinion() {
    // generate random seed
    int seed = time(NULL);

@@ -8,12 +8,6 @@
 #include <assert.h>
 #include <stdbool.h>
 
-struct testStruct {
-    struct gameState *state;
-    int currentPlayer;
-    int nextPlayer;
-}
-
 void testCardEffectTribute() {
      // generate random seed
      int seed = time(NULL);
