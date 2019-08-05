@@ -10,6 +10,10 @@
 
 
 void testCardEffectBaron() {
+   // generate random seed
+   int seed = time(NULL);
+   
+   srand(seed);//passing seed to rand() for future values
     //----------------------------- handle hand count in a for loop, might need to initialize it (see coin example)
     for (int handSize = 1; handSize <= MAX_HAND; ++handSize) {
     
