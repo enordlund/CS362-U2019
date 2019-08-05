@@ -18,7 +18,7 @@ struct testStruct {
 
 void testCardEffectMine() {
     //----------------------------- handle hand count in a for loop, might need to initialize it (see coin example)
-    for (int handSize = 1; handSize <= maxHandSize; ++handSize) {
+    for (int handSize = 1; handSize <= MAX_HAND; ++handSize) {
     
         for (int numPlayers = 2; numPlayers <= MAX_PLAYERS; ++numPlayers) {
             // testing for all possible numbers of players
@@ -42,7 +42,7 @@ void testCardEffectMine() {
                         // populating hands
                         for (int player = 0; player < numPlayers; ++player) {
                             for (int card = 0; card < handSize; ++card) {
-                                drawCard(player, state);
+                                drawCard(player, &state);
                             }
                         }
                         
@@ -55,13 +55,13 @@ void testCardEffectMine() {
                         int initialTreasures = 0;
                         int initialTreasureValue = 0;
                         for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
-                             if (hand[currentPlayer][card] == copper) {
+                             if (state.hand[currentPlayer][card] == copper) {
                                initialTreasures++;
                                initialTreasureValue = initialTreasureValue + 1;
-                             } else if (hand[currentPlayer][card] == silver) {
+                             } else if (state.hand[currentPlayer][card] == silver) {
                                initialTreasures++;
                                initialTreasureValue = initialTreasureValue + 2;
-                             } else if (hand[currentPlayer][card] == gold) {
+                             } else if (state.hand[currentPlayer][card] == gold) {
                                initialTreasures++;
                                initialTreasureValue = initialTreasureValue + 3;
                              }
@@ -74,13 +74,13 @@ void testCardEffectMine() {
                         int currentTreasures = 0;
                         int currentTreasureValue = 0;
                         for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
-                             if (hand[currentPlayer][card] == copper) {
+                             if (state.hand[currentPlayer][card] == copper) {
                                currentTreasures++;
                                currentTreasureValue = currentTreasureValue + 1;
-                             } else if (hand[currentPlayer][card] == silver) {
+                             } else if (state.hand[currentPlayer][card] == silver) {
                                currentTreasures++;
                                currentTreasureValue = currentTreasureValue + 2;
-                             } else if (hand[currentPlayer][card] == gold) {
+                             } else if (state.hand[currentPlayer][card] == gold) {
                                currentTreasures++;
                                currentTreasureValue = currentTreasureValue + 3;
                              }

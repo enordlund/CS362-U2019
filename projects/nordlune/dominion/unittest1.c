@@ -11,7 +11,7 @@
 
 void testCardEffectBaron() {
     //----------------------------- handle hand count in a for loop, might need to initialize it (see coin example)
-    for (int handSize = 1; handSize <= maxHandSize; ++handSize) {
+    for (int handSize = 1; handSize <= MAX_HAND; ++handSize) {
     
         for (int numPlayers = 2; numPlayers <= MAX_PLAYERS; ++numPlayers) {
             // testing for all possible numbers of players
@@ -39,7 +39,7 @@ void testCardEffectBaron() {
                             // populating hand for current player
                             for (int player = 0; player < numPlayers; ++player) {
                                 for (int card = 0; card < handSize; ++card) {
-                                    drawCard(player, state);
+                                    drawCard(player, &state);
                                 }
                             }
                             
@@ -49,7 +49,7 @@ void testCardEffectBaron() {
                             // loop through hand of current player to check for number of estate cards
                             int initialEstateCount = 0;
                             for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
-                                if (hand[currentPlayer][card] == estate) {
+                                if (state.hand[currentPlayer][card] == estate) {
                                     initialEstateCount++;
                                 }
                             }
@@ -69,7 +69,7 @@ void testCardEffectBaron() {
                             
                             int newEstateCount = 0;
                             for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
-                                if (hand[currentPlayer][card] == estate) {
+                                if (state.hand[currentPlayer][card] == estate) {
                                     newEstateCount++;
                                 }
                             }

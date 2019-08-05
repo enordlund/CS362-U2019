@@ -18,7 +18,7 @@ struct testStruct {
 
 void testCardEffectAmbassador() {
     //----------------------------- handle hand count in a for loop, might need to initialize it (see coin example)
-    for (int handSize = 1; handSize <= maxHandSize; ++handSize) {
+    for (int handSize = 1; handSize <= MAX_HAND; ++handSize) {
     
         for (int numPlayers = 2; numPlayers <= MAX_PLAYERS; ++numPlayers) {
             // testing for all possible numbers of players
@@ -42,7 +42,7 @@ void testCardEffectAmbassador() {
                         // populating hands
                         for (int player = 0; player < numPlayers; ++player) {
                             for (int card = 0; card < handSize; ++card) {
-                                drawCard(player, state);
+                                drawCard(player, &state);
                             }
                         }
                         
