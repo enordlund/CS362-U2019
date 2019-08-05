@@ -26,7 +26,7 @@ void testCardEffectMinion() {
                     for (int choice2 = 0; choice2 <= 1; ++choice2) {
                         // testing both choices
                         
-                        struct gameState *state;
+                        struct gameState state;
                         
                         int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
                         
@@ -44,7 +44,7 @@ void testCardEffectMinion() {
                         
                         // keeping track of initial treasure cards for current player, for later comparison if choice1
                         int initialTreasures = 0;
-                        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+                        for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
                             if (hand[currentPlayer][card] == copper) {
                                 initialTreasures++;
                             } else if (hand[currentPlayer][card] == silver) {
@@ -56,7 +56,7 @@ void testCardEffectMinion() {
                         
                         // copying hand counts for later comparison if choice2
                         int initialHandCount[numPlayers];
-                        memcpy(initialHandCount, state->handCount, sizeof(state->handCount));
+                        memcpy(initialHandCount, state.handCount, sizeof(state.handCount));
                         
                         cardEffectMinion(choice1, choice2, &state, 0, currentPlayer);
                         
@@ -69,7 +69,7 @@ void testCardEffectMinion() {
                             int expectedTreasureCount = initialTreasures + 2;
                             
                             int newTreasureCount = 0;
-                            for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+                            for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
                                 if (hand[currentPlayer][card] == copper) {
                                     newTreasureCount++;
                                 } else if (hand[currentPlayer][card] == silver) {
@@ -89,12 +89,12 @@ void testCardEffectMinion() {
                             
                             for (int player = 0; player < numPlayers; ++player) {
                                 if (player == currentPlayer) {
-                                    assert(state->handCount[player] == 4);
+                                    assert(state.handCount[player] == 4);
                                 } else {
                                     if (initialHandCount[player] > 4) {
-                                        assert(state->handCount[player] == 4);
+                                        assert(state.handCount[player] == 4);
                                     } else {
-                                        assert(state->handCount[player] == initialHandCount[player]);
+                                        assert(state.handCount[player] == initialHandCount[player]);
                                     }
                                 }
                             }

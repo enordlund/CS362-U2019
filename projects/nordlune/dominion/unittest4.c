@@ -19,7 +19,7 @@ void testCardEffectTribute() {
             // testing for all possible numbers of players
             for (int currentPlayer = 0; currentPlayer < numPlayers; ++currentPlayer) {
                
-               struct gameState *state;
+               struct gameState state;
 
                int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 
@@ -37,18 +37,18 @@ void testCardEffectTribute() {
 
                // copying hand counts for later comparison
                int initialHandCount[numPlayers];
-               memcpy(initialHandCount, state->handCount, sizeof(state->handCount));
+               memcpy(initialHandCount, state.handCount, sizeof(state.handCount));
                
                int nextPlayer = 0;
                if (currentPlayer != (numPlayers - 1)) {
                   nextPlayer = currentPlayer + 1;
                }
                
-               int initialActions = state->numActions;
+               int initialActions = state.numActions;
                
                // keeping track of initial treasure cards for current player, for later comparison
                int initialTreasures = 0;
-               for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+               for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
                     if (hand[currentPlayer][card] == copper) {
                       initialTreasures++;
                     } else if (hand[currentPlayer][card] == silver) {
@@ -63,13 +63,13 @@ void testCardEffectTribute() {
                // check expectations
                int expectedActionsMax = initialActions + 2;
                
-               assert(expectedActionsMax >= state->numActions);
+               assert(expectedActionsMax >= state.numActions);
                
                
                int expectedTreasuresMax = initialTreasures + 2;
                
                int currentTreasures = 0;
-               for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+               for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
                     if (hand[currentPlayer][card] == copper) {
                       currentTreasures++;
                     } else if (hand[currentPlayer][card] == silver) {
@@ -84,7 +84,7 @@ void testCardEffectTribute() {
                
                int expectedHandCountMax = initialHandCount[currentPlayer] + 2;
                
-               assert(expectedHandCountMax >= state->handCount[currentPlayer]);
+               assert(expectedHandCountMax >= state.handCount[currentPlayer]);
                
                                
             }

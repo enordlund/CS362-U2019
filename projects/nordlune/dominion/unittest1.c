@@ -25,7 +25,7 @@ void testCardEffectBaron() {
                         bool checkedNoInitialEstate = false;
                         // looping until gameState covers cases of a player having an initial estate card, and not having one.
                         while (!checkedInitialEstate || !checkedNoInitialEstate) {
-                            struct gameState *state;
+                            struct gameState state;
                             
                             int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
                             
@@ -45,7 +45,7 @@ void testCardEffectBaron() {
                             // ------------------------------last step is making sure we count all cases of the initialEstateCount in some kind of loop, because this is partially determined by the initializeGame function
                             // loop through hand of current player to check for number of estate cards
                             int initialEstateCount = 0;
-                            for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+                            for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
                                 if (hand[currentPlayer][card] == estate) {
                                     initialEstateCount++;
                                 }
@@ -57,21 +57,21 @@ void testCardEffectBaron() {
                                 checkedInitialEstate = true;
                             }
                             
-                            int initialEstateSupplyCount = state->supplyCount[estate];
+                            int initialEstateSupplyCount = state.supplyCount[estate];
                             
-                            int initialDiscardCount = state->discardCount[currentPlayer];
-                            CARD mostRecentDiscard = state->discard[currentPlayer][initialDiscardCount - 1];
+                            int initialDiscardCount = state.discardCount[currentPlayer];
+                            int mostRecentDiscard = state.discard[currentPlayer][initialDiscardCount - 1];
                             
                             cardEffectBaron(choice, &state, currentPlayer);
                             
                             int newEstateCount = 0;
-                            for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+                            for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
                                 if (hand[currentPlayer][card] == estate) {
                                     newEstateCount++;
                                 }
                             }
                             
-                            int newEstateSupplyCount = state->supplyCount[estate];
+                            int newEstateSupplyCount = state.supplyCount[estate];
                             
                             if (choice == 0) {
                                 // testing for the case of gaining an estate
@@ -103,13 +103,13 @@ void testCardEffectBaron() {
                                     
                                     int expectedEstateCount = initialEstateCount - 1;
                                     int expectedDiscardCount = initialDiscardCount + 1;
-                                    CARD expectedDiscard = estate;
+                                    int expectedDiscard = 1;
                                     
-                                    int lastDiscardIndex = state->discardCount[currentPlayer] - 1;
-                                    CARD lastDiscard = state->discard[currentPlayer][lastDiscardIndex];
+                                    int lastDiscardIndex = state.discardCount[currentPlayer] - 1;
+                                    int lastDiscard = state.discard[currentPlayer][lastDiscardIndex];
                                     
                                     assert(newEstateCount == expectedEstateCount);
-                                    assert(newEstateSupplyCount == expectedEstateSupplyCount);
+                                    assert(newEstateSupplyCount == initialEstateSupplyCount);
                                     assert(lastDiscard == expectedDiscard);
                                     
                                 }

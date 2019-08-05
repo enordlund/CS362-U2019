@@ -22,13 +22,13 @@ void testCardEffectMine() {
             for (int currentPlayer = 0; currentPlayer < numPlayers; ++currentPlayer) {
                 // testing for all possible current players
                 
-                for (int choice1 = 0; choice1 < handSize; ++choice1) {// might be better in a while loop once state->handCount can be used
+                for (int choice1 = 0; choice1 < handSize; ++choice1) {// might be better in a while loop once state.handCount can be used
                     for (int choice2 = 0; choice2 <= 2; ++choice2) {
                         // testing both choices
                         // - choice1 is the chosen card to reveal
                         // - choice2 is the chosen number of those cards to discard
                         
-                        struct gameState *state;
+                        struct gameState state;
                         
                         int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
                         
@@ -46,12 +46,12 @@ void testCardEffectMine() {
                         
                         // copying hand counts for later comparison
                         int initialHandCount[numPlayers];
-                        memcpy(initialHandCount, state->handCount, sizeof(state->handCount));
+                        memcpy(initialHandCount, state.handCount, sizeof(state.handCount));
                         
                         // keeping track of initial treasure cards for current player, for later comparison
                         int initialTreasures = 0;
                         int initialTreasureValue = 0;
-                        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+                        for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
                              if (hand[currentPlayer][card] == copper) {
                                initialTreasures++;
                                initialTreasureValue = initialTreasureValue + 1;
@@ -66,11 +66,11 @@ void testCardEffectMine() {
                         
                         cardEffectMine(choice1, choice2, &state, 0, currentPlayer);
                         
-                        assert(initialHandCount[currentPlayer] == status->handCount[currentPlayer);
+                        assert(initialHandCount[currentPlayer] == state.handCount[currentPlayer);
                         
                         int currentTreasures = 0;
                         int currentTreasureValue = 0;
-                        for (int card = 0; card < state->handCount[currentPlayer]; ++card) {
+                        for (int card = 0; card < state.handCount[currentPlayer]; ++card) {
                              if (hand[currentPlayer][card] == copper) {
                                currentTreasures++;
                                currentTreasureValue = currentTreasureValue + 1;
