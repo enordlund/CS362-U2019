@@ -59,7 +59,7 @@ void testCardEffectTribute() {
                     }
                }
                
-               cardEffectTribute(&state, 0, currentPlayer, nextPlayer);
+               cardEffectTribute(&state, currentPlayer, nextPlayer);
                
                // check expectations
                int expectedActionsMax = initialActions + 2;
