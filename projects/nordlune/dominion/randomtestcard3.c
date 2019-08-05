@@ -65,7 +65,7 @@ int main() {
         
         
         // call cardEffectTribute with random parameters
-        int cardEffect = cardEffectTribute(&state, 0, currentPlayer, nextPlayer);
+        int cardEffect = cardEffectTribute(&state, currentPlayer, nextPlayer);
         
         
         // check if successful
