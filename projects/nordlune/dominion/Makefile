@@ -28,6 +28,20 @@ runtests: testDrawCard
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
+	
+randomtestresults: randomtestcard1.c randomtestcard2.c randomtestcard3.c dominion.o rngs.o
+	gcc -o randomTestCard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	gcc -o randomTestCard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	gcc -o randomTestCard3 -g randomtestcard3.c dominion.o rngs.o $(CFLAGS)
+	./randomTestCard1 &> randomtestresults.out
+	gcov dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
+	./randomTestCard2 &> randomtestresults.out
+	gcov dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
+	./randomTestCard3 &> randomtestresults.out
+	gcov dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
 
 
 player: player.c interface.o
