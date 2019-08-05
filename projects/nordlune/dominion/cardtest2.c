@@ -28,7 +28,7 @@ void testShuffle() {
           for (int player = 0; player < numPlayers; ++player) {
                // now that the game is initialized, copy current deck order
                int deckCount = state.deckCount[player];
-               int initialDeck[handCount];
+               int initialDeck[state.handCount[player]];
                memcopy(initialDeck, state.deck[player], sizeof(int) * state.deckCount[player]);
                shuffle(player, &state);
                
