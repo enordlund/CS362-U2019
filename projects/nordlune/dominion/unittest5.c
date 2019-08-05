@@ -65,7 +65,7 @@ void testCardEffectMine() {
                         
                         cardEffectMine(choice1, choice2, &state, 0, currentPlayer);
                         
-                        assert(initialHandCount[currentPlayer] == state.handCount[currentPlayer);
+                        assert(initialHandCount[currentPlayer] == state.handCount[currentPlayer]);
                         
                         int currentTreasures = 0;
                         int currentTreasureValue = 0;
