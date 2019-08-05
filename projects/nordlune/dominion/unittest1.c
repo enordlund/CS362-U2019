@@ -21,7 +21,7 @@ void testCardEffectBaron() {
             // testing for all possible numbers of players
             for (int currentPlayer = 0; currentPlayer < numPlayers; ++currentPlayer) {
                 // testing for all possible current players
-                for (int initialEstateCount = 0; initialEstateCount <= handCount; ++initialEstateCount) {
+                for (int initialEstateCount = 0; initialEstateCount <= 1; ++initialEstateCount) {
                     // testing starting without an estate card, and with an estate card.
                     for (int choice = 0; choice <= 1; ++choice) {
                         // testing both choices for choice1
