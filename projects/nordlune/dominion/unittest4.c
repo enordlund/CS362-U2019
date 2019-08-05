@@ -1,9 +1,12 @@
 // Unit test for cardEffectTribute
 
-#include<stdio.h>
-#include<stdlib.h>
-#include <assert.h>
+#include "dominion.h"
 #include "dominion_helpers.h"
+
+#include <stdio.h>
+#include <time.h>
+#include <assert.h>
+#include <stdbool.h>
 
 struct testStruct {
     struct gameState *state;

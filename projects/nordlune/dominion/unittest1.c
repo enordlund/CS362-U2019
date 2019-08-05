@@ -1,9 +1,12 @@
 // Unit test for cardEffectBaron
 
-#include<stdio.h>
-#include<stdlib.h>
-#include <assert.h>
+#include "dominion.h"
 #include "dominion_helpers.h"
+
+#include <stdio.h>
+#include <time.h>
+#include <assert.h>
+#include <stdbool.h>
 
 
 void testCardEffectBaron() {
