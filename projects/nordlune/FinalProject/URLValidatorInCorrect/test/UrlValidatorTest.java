@@ -140,7 +140,12 @@ public void testIsValidHTTP() {
     // each URL is at least 3 characters long to allow for "a.a" as a minimum length example.
     for (int urlLength = 3; urlLength < 254; ++urlLength) {
         // minimum numberOfLabels is 2, to allow for the above minimum example.
-        for (int numberOfLabels = 2; numberOfLabels < urlLength; ++numberOfLabels) {
+        
+        // finding maximum number of labels for the URL length
+        // - each label has to have a character and delimiting dot (2 characters total), except for last one.
+        // - round up (urlLength / 2)
+        int maximumLabelCount = Math.ceil(urlLength / 2.0);
+        for (int numberOfLabels = 2; numberOfLabels < maximumLabelCount; ++numberOfLabels) {
             // step through each label for populating
             for (int labelNumber = 0; labelNumber < numberOfLabels; ++labelNumber) {
                 // reset the url string if it's starting over
@@ -167,6 +172,10 @@ public void testIsValidHTTP() {
                     isLastLabel = true;
                     maxLabelLength = urlLength - currentLength;
                     minimumLabelLength = 1;
+                }
+                
+                if (maxLabelLength > 63) {
+                   maxLabelLength = 63;
                 }
                 
                 // create a label of each legal length
@@ -211,15 +220,126 @@ public void testIsValidHTTP() {
                                         assertTrue(result);
                                     }
                                 }
-                                
                             }
                         }
                     }
                 }
             }
-            
         }
     }
+}
+
+   
+public void testIsValidHTTPRandom() {
+    UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    
+    // assert a couple known true URLs first
+    assertTrue(urlVal.isValid("http://www.google.com"));
+    assertTrue(urlVal.isValid("http://www.google.com/"));
+    
+    // next, test all possible valid http:// URLs
+    // - each label, e.g. "www." must be 1-63 characters in length
+    // - the total URL (after "http://") cannot be greater than 253 characters.
+    
+    String urlPrefix = "http://";
+    
+    String url = "";
+
+    // each URL is at least 3 characters long to allow for "a.a" as a minimum length example.
+    // set random values within bounds
+    // - URL length on [3, 253]
+    int urlLength = 3 + (int)(Math.random() * ((253 - 3) + 1));
+    
+    // finding maximum number of labels for the URL length
+    // - each label has to have a character and delimiting dot (2 characters total), except for last one.
+    // - round up (urlLength / 2)
+    int maximumLabelCount = Math.ceil(urlLength / 2.0);
+    
+    // - number of labels on [2, maximumLabelCount];
+    int numberOfLabels = 2 + (int)(Math.random() * ((maximumLabelCount - 2) + 1));
+    
+    
+    
+    // step through each label for populating
+    for (int labelNumber = 0; labelNumber <= numberOfLabels; ++labelNumber) {
+        // reset the url string if it's starting over
+        if (labelNumber == 0) {
+            url = "";
+        }
+        
+        // figure out maximum length for the label, given:
+        // - urlLength
+        // - number of labels remaining
+        // each label has a minimum length of 2, except for the last label, which has a minimum length of 1.
+        // maximum labelLength = urlLength - currentLength - (
+        
+        int currentLength = url.length();
+        int remainingLabelsCount = numberOfLabels - labelNumber;
+        int maxLabelLength = urlLength - currentLength - 2 * (remainingLabelsCount - 1) - 1;
+        
+        int minimumLabelLength = 2;
+        
+        boolean isLastLabel = false;
+        
+        // correct bounds if it is the last label
+        if (labelNumber == (numberOfLabels - 1)) {
+            isLastLabel = true;
+            maxLabelLength = urlLength - currentLength;
+            minimumLabelLength = 1;
+        }
+        
+        if (maxLabelLength > 63) {
+            maxLabelLength = 63;
+        }
+        
+        // establish length of label, within limits
+        int labelLength = minimumLabelLength + (int)(Math.random() * ((maxLabelLength - minimumLabelLength) + 1));
+        
+        // step through each character, populating the label
+        for (int labelCharacterIndex = 0; labelCharacterIndex < labelLength; ++labelCharacterIndex) {
+            // if it is not the last label, a delimiting dot is required as last character
+            if ((labelCharacterIndex == labelLength - 1) && (!isLastLabel)) {
+                url += ".";
+            } else {
+                // append a valid character
+                // valid characters are uppercase letters, lowercase letters, and numbers '0' through '9', for a total of 62 characters.
+                
+                // choosing random character
+                int chosenCharacter = 0 + (int)(Math.random() * ((61 - 0) + 1));
+                
+                int asciiValue = 0;
+                
+                // determine range of characters
+                if (chosenCharacter < 10) {
+                    // numbers first
+                    asciiValue = chosenCharacter + 48;
+                } else if (chosenCharacter < 36) {
+                    // uppercase next
+                    asciiValue = chosenCharacter + 55;
+                } else {
+                    // lowercase last
+                    asciiValue = chosenCharacter + 61;
+                }
+                
+                // convert to character
+                char character = (char) asciiValue;
+                String characterString = character.toString();//--------- this might cause issues...
+                
+                // append the character to the url
+                url += characterString;
+                
+                // if this is the last character of the last label, test with the url
+                if (labelCharacterIndex == labelLength - 1) {
+                    if (isLastLabel) {
+                        // add "http://" to beginning
+                        url = urlPrefix + url;
+                        boolean result = urlVal.isValid(url);
+                        assertTrue(result);
+                    }
+                }
+            }
+        }
+    }   
 }
 
    public void testValidator202() {
