@@ -122,7 +122,7 @@ protected void setUp() {
       }
    }
    
-public void testIsValidHTTP() {
+public void testIsValidHTTPUnitTest() {
     UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
     
     // assert a couple known true URLs first
