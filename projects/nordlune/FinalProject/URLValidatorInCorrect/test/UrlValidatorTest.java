@@ -230,7 +230,7 @@ public void testIsValidHTTPUnitTest() {
 }
 
    
-public void testIsValidHTTPRandom() {
+public void testIsValidHTTPRandomTest() {
     UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
     
     // assert a couple known true URLs first
